@@ -7,7 +7,6 @@ import no.uib.inf101.sem2.twentyfourtyeight.view.ViewableGameModel;
 
 public class GameModel implements ViewableGameModel {
     GameBoard board;
-
     public GameModel(GameBoard board){
         this.board = board;
     }
@@ -37,5 +36,7 @@ public class GameModel implements ViewableGameModel {
         throw new UnsupportedOperationException("Unimplemented method 'getGameState'");
     }
 
+
     
-}
+    }
+

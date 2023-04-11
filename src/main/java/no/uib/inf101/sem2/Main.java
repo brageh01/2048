@@ -13,8 +13,8 @@ public class Main {
     
     board.set(new CellPosition(0, 0), 'g');
     board.set(new CellPosition(0, 3), 'p');
-    board.set(new CellPosition(2, 0), 'r');
-    board.set(new CellPosition(2, 3), 'y');
+    board.set(new CellPosition(3, 0), 'r');
+    board.set(new CellPosition(3, 3), 'y');
 
 
     GameModel model = new GameModel(board);
