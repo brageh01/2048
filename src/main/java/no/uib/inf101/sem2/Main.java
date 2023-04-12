@@ -11,10 +11,10 @@ public class Main {
   public static void main(String[] args) {
     GameBoard board = new GameBoard(4, 4);
     
-    board.set(new CellPosition(0, 0), 'g');
-    board.set(new CellPosition(0, 3), 'p');
-    board.set(new CellPosition(3, 0), 'r');
-    board.set(new CellPosition(3, 3), 'y');
+    board.set(new CellPosition(0, 0), 'A');
+    board.set(new CellPosition(0, 3), 'B');
+    board.set(new CellPosition(3, 0), 'C');
+    board.set(new CellPosition(3, 3), 'D');
 
 
     GameModel model = new GameModel(board);
@@ -26,5 +26,5 @@ public class Main {
     frame.setContentPane(view);
     frame.pack();
     frame.setVisible(true);
-  }
+    }
 }

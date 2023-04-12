@@ -18,9 +18,6 @@ public class Tile {
         return value;
     }
 
-    public Color getColor() {
-        return color;
-    }
 
     public void setValue(int value) {
         this.value = value;

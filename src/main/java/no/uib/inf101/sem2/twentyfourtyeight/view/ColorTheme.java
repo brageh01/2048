@@ -1,10 +1,13 @@
 package no.uib.inf101.sem2.twentyfourtyeight.view;
 
 import java.awt.Color;
+import java.util.Map;
+
 
 public interface ColorTheme {
    
-    Color getTileColor(int c);
+
+    Color getTileColor(char c);
 
     Color getFrameColor();
 

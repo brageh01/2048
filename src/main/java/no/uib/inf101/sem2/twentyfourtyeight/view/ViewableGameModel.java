@@ -3,6 +3,7 @@ package no.uib.inf101.sem2.twentyfourtyeight.view;
 import no.uib.inf101.sem2.grid.GridCell;
 import no.uib.inf101.sem2.grid.GridDimension;
 
+
 public interface ViewableGameModel {
     
     /**

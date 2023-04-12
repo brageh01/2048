@@ -4,20 +4,24 @@ import java.awt.Color;
 
 public class DefaultColorTheme implements ColorTheme {
 
+
+
+
     @Override
-    public Color getTileColor(int c) {
+    public Color getTileColor(char c) {
+        
         Color color = switch(c) {
-        case 2 -> new Color(238, 228, 218);
-        case 4 -> new Color(237, 224, 200);
-        case 8 -> new Color(242, 177, 121);
-        case 16 -> new Color(245, 149, 99);
-        case 32 -> new Color(246, 124, 95);
-        case 64 -> new Color(246, 94, 59);
-        case 128 -> new Color(237, 207, 114);
-        case 256 -> new Color(237, 204, 97);
-        case 512 -> new Color(237, 200, 80);
-        case 1024 -> new Color(237, 197, 63);
-        //finne en fargekode for case 2048 -> new Color(???????????????????)
+        case 'A' -> new Color(238, 228, 218); //2
+        case 'B' -> new Color(237, 224, 200); //4
+        case 'C' -> new Color(242, 177, 121); //8
+        case 'D' -> new Color(245, 149, 99); //16
+        case 'E' -> new Color(246, 124, 95); //32
+        case 'F' -> new Color(246, 94, 59); //64
+        case 'G' -> new Color(237, 207, 114); //128
+        case 'H' -> new Color(237, 204, 97); //256
+        case 'I' -> new Color(237, 200, 80); //512
+        case 'J' -> new Color(237, 197, 63); //1024
+        //finne en fargekode for case 2048 -> new Color(?)
         case 'r' -> Color.RED;
         case 'g' -> Color.GREEN;
         case 'y' -> Color.YELLOW;
@@ -27,9 +31,10 @@ public class DefaultColorTheme implements ColorTheme {
             "No available color for '" + c + "'");
         };
         return color;
-}
-
-
+    }
+    
+    
+    
     @Override
     public Color getFrameColor() {
         Color frameColor = new Color(0, 0, 0, 0);
@@ -55,3 +60,4 @@ public class DefaultColorTheme implements ColorTheme {
     }
     
 }
+
