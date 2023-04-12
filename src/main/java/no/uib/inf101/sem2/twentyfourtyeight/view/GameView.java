@@ -7,6 +7,7 @@ import no.uib.inf101.sem2.twentyfourtyeight.model.GameModel;
 
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.FontMetrics;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Shape;
@@ -70,6 +71,13 @@ public class GameView extends JPanel{
             g2.setColor(color);
             g2.fill(shape);
             g2.draw(shape);
+
+            //AVVENT MED RESTERENDE HER
+            //FontMetrics fm = g2.getFontMetrics();
+            //String number = Integer.toString(tile.getNumber());
+            //int x = (int) (rect.getX() + rect.getWidth() / 2 - fm.stringWidth(number) / 2);
+            //int y = (int) (rect.getY() + rect.getHeight() / 2 + fm.getAscent() / 2);
+            //g2.drawString(number, x, y);
         }
     }
 }
