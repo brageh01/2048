@@ -12,14 +12,14 @@ public class TestGameBoard{
 @Test
 public void testPrettyString() {
   GameBoard board = new GameBoard(3, 4);
-  board.set(new CellPosition(0, 0), 'g');
-  board.set(new CellPosition(0, 3), 'y');
-  board.set(new CellPosition(2, 0), 'r');
-  board.set(new CellPosition(2, 3), 'b');
+  board.set(new CellPosition(0, 0), 2);
+  board.set(new CellPosition(0, 3), 4);
+  board.set(new CellPosition(2, 0), 8);
+  board.set(new CellPosition(2, 3), 16);
   String expected = String.join("\n", new String[] {
-      "g--y",
-      "----",
-      "r--b"
+      "2004",
+      "0000",
+      "80016"
   });
   assertEquals(expected, board.prettyString());
 }

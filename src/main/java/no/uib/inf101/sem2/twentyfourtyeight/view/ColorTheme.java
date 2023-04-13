@@ -7,7 +7,7 @@ import java.util.Map;
 public interface ColorTheme {
    
 
-    Color getTileColor(char c);
+    Color getTileColor(int number);
 
     Color getFrameColor();
 

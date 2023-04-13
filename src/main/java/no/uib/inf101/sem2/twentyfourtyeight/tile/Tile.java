@@ -1,28 +1,70 @@
 package no.uib.inf101.sem2.twentyfourtyeight.tile;
-import java.awt.Color;
 
-
-import no.uib.inf101.sem2.twentyfourtyeight.view.DefaultColorTheme;
+import no.uib.inf101.sem2.grid.CellPosition;
 
 public class Tile {
+    // Instance variables
     private int value;
-    private Color color;
+    private CellPosition position;
 
-    public Tile(int value) {
+    // Constructor
+    public Tile(int value, CellPosition position) {
         this.value = value;
-        DefaultColorTheme theme = new DefaultColorTheme();
-        this.color = theme.getTileColor(value);
+        this.position = position;
     }
 
+    // Getters
     public int getValue() {
         return value;
     }
 
-
-    public void setValue(int value) {
-        this.value = value;
-        DefaultColorTheme theme = new DefaultColorTheme();
-        this.color = theme.getTileColor(value);
+    public CellPosition getPosition() {
+        return position;
     }
 
+    // Setters
+    public void setValue(int value) {
+        this.value = value;
+    }
+
+    public void setPosition(CellPosition position) {
+        this.position = position;
+    }
+
+    // Create a new tile with the specified value and position
+    public static Tile newTile(int value, CellPosition position) {
+        return new Tile(value, position);
+    }
+
+    // Creates a copy of the tile with a new position
+    public Tile shiftedBy(int deltaRow, int deltaCol) {
+        return new Tile(this.value, new CellPosition(this.position.row() + deltaRow, this.position.col() + deltaCol));
+    }
+
+    // Checks if two tiles are equal based on their value and position
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) return false;
+        if (obj == this) return true;
+        if (!(obj instanceof Tile)) return false;
+        Tile other = ((Tile) obj);
+        return this.value == other.value && this.position.equals(other.position);
+    }
+
+    @Override
+    public int hashCode() {
+        int prime = 31;
+        int result = 1;
+        result = prime * result + value;
+        result = prime * result + position.hashCode();
+        return result;
+    }
+
+    @Override
+    public String toString() {
+        return "Tile{" +
+                "value=" + value +
+                ", position=" + position +
+                '}';
+    }
 }

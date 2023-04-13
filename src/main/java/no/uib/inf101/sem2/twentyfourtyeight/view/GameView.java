@@ -22,7 +22,7 @@ public class GameView extends JPanel{
     public GameView(GameModel model){
         this.model = model;
         this.setFocusable(true);
-        this.setPreferredSize(new Dimension(400, 300));
+        this.setPreferredSize(new Dimension(400, 400));
 
         colorTheme = new DefaultColorTheme();
         Color backgroundColor = colorTheme.getBackgroundColor();
@@ -60,22 +60,30 @@ public class GameView extends JPanel{
         
     }
 
-    private static void drawCells(Graphics2D g2, Iterable<GridCell<Character>> cells, CellPositionToPixelConverter converter, ColorTheme colorTheme) {
-        for (GridCell<Character> cell : cells) {
+    private static void drawCells(Graphics2D g2, Iterable<GridCell<Integer>> cells, CellPositionToPixelConverter converter, ColorTheme colorTheme) {
+        // Set font color and size for tile values
+        g2.setColor(colorTheme.getFontColor());
+        g2.setFont(g2.getFont().deriveFont(20f));
+
+        for (GridCell<Integer> cell : cells) {
             Rectangle2D rect = converter.getBoundsForCell(cell.pos());
             Color color = colorTheme.getTileColor(cell.value());
-    
+
             Shape shape = rect;
             g2.setColor(color);
             g2.fill(shape);
             g2.draw(shape);
-            
-            //FontMetrics fm = g2.getFontMetrics();
-            //String number = Integer.toString(tile.getNumber());
-            //int x = (int) (rect.getX() + rect.getWidth() / 2 - fm.stringWidth(number) / 2);
-            //int y = (int) (rect.getY() + rect.getHeight() / 2 + fm.getAscent() / 2);
-            //g2.drawString(number, x, y);
-            
+
+            // Draw tile value
+            if (cell.value() != 0) {
+                String value = String.valueOf(cell.value());
+                int stringWidth = g2.getFontMetrics().stringWidth(value);
+                int stringHeight = g2.getFontMetrics().getAscent();
+                int x = (int) (rect.getX() + rect.getWidth() / 2 - stringWidth / 2);
+                int y = (int) (rect.getY() + rect.getHeight() / 2 + stringHeight / 2);
+                g2.setColor(colorTheme.getFontColor());
+                g2.drawString(value, x, y);
+            }
         }
     }
 }

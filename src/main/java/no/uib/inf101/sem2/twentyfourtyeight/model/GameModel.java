@@ -1,16 +1,33 @@
 package no.uib.inf101.sem2.twentyfourtyeight.model;
 
+
 import no.uib.inf101.sem2.grid.GridCell;
 import no.uib.inf101.sem2.grid.GridDimension;
+import no.uib.inf101.sem2.twentyfourtyeight.controller.ControllableGameModel;
+import no.uib.inf101.sem2.twentyfourtyeight.tile.Tile;
+import no.uib.inf101.sem2.twentyfourtyeight.tile.TileFactory;
 import no.uib.inf101.sem2.twentyfourtyeight.view.GameState;
 import no.uib.inf101.sem2.twentyfourtyeight.view.ViewableGameModel;
 
-public class GameModel implements ViewableGameModel {
+public class GameModel implements ViewableGameModel, ControllableGameModel {
     GameBoard board;
-    public GameModel(GameBoard board){
+    TileFactory factory;
+    GameState gameState;
+    
+
+    public GameModel(GameBoard board, TileFactory factory){
         this.board = board;
+        this.factory = factory;
+        this.gameState = GameState.ACTIVE_GAME;
+
+        for (int i = 0; i < 2; i++){
+            addRandomTile();
+        }
     }
 
+    private void addRandomTile(){
+        board.addTile(factory.getNext(board.getRandomEmptyPosition()));
+    }
     
     @Override
     public GridDimension getDimension() {
@@ -18,7 +35,7 @@ public class GameModel implements ViewableGameModel {
     }
 
     @Override
-    public Iterable<GridCell<Character>> getTilesOnBoard() {
+    public Iterable<GridCell<Integer>> getTilesOnBoard() {
         return this.board;
     }
 
@@ -32,8 +49,7 @@ public class GameModel implements ViewableGameModel {
 
     @Override
     public GameState getGameState() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getGameState'");
+        return gameState;
     }
 
 

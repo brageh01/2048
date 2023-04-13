@@ -19,7 +19,7 @@ GridDimension getDimension();
  * Iterable of GridCell containing tiles for the whole board.
  * @return Iterable of the 2048 board
  */
-Iterable<GridCell<Character>> getTilesOnBoard();
+Iterable<GridCell<Integer>> getTilesOnBoard();
 
 
 /**
