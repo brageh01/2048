@@ -50,18 +50,19 @@ public class Grid<E> implements IGrid<E> {
     @Override
     public void set(CellPosition pos, E value) {
         if (!positionIsOnGrid(pos)) {
-            throw new IndexOutOfBoundsException("Position out bounds");
-        }
+            throw new IndexOutOfBoundsException("Position out of bounds: (" + pos.row() + ", " + pos.col() + ")");
+        }   
         board.get(pos.row()).set(pos.col(), value);
     }
 
     @Override
     public E get(CellPosition pos) {
         if (!positionIsOnGrid(pos)) {
-            throw new IndexOutOfBoundsException("Position out bounds");
+            throw new IndexOutOfBoundsException("Position out of bounds: (" + pos.row() + ", " + pos.col() + ")");
         }
         return board.get(pos.row()).get(pos.col());
     }
+    
 
     @Override
     public boolean positionIsOnGrid(CellPosition pos) {

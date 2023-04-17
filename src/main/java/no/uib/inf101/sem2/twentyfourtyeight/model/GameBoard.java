@@ -29,7 +29,7 @@ public class GameBoard extends Grid<Integer>{
                 }
             }
         }
-
+        
         if (emptyPositions.isEmpty()) {
             return null;
         } else {

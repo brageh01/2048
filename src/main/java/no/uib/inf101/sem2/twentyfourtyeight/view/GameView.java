@@ -19,6 +19,7 @@ public class GameView extends JPanel{
     ColorTheme colorTheme;
     double INNER_MARGIN = 20;
     double OUTER_MARGIN = 20;
+    
     public GameView(GameModel model){
         this.model = model;
         this.setFocusable(true);
@@ -40,20 +41,22 @@ public class GameView extends JPanel{
 
         double boxDimX = this.getWidth()-2*INNER_MARGIN;
         double boxDimY = this.getHeight()-2*INNER_MARGIN;
-        // Rektangel for spillområdet
+        // Rectangle for game area
         Rectangle2D gameArea = new Rectangle2D.Double(OUTER_MARGIN, OUTER_MARGIN, boxDimX, boxDimY);
         Shape shape = gameArea;
     
-        // Fyll rektangelet med fargen til rammen rundt rutenettet
+        // Fill the rectangle with the colour to the outline of the grid
         g2.setColor(colorTheme.getFrameColor());
         g2.fill(shape);
         g2.draw(shape);
       
-        // Opprett et CellPositionToPixelConverter-objekt basert på rektangelet
-      
+        
+        // Create a CellPositionToPixelConverter-object based on the rectangle
         CellPositionToPixelConverter converter = new CellPositionToPixelConverter(gameArea, model.getDimension(), INNER_MARGIN);
+      
     
-        // Tegn hver celle i rutenettet ved å kalle på drawCell-metoden
+       
+        // Draw every cell in the grid by using the drawCell-method
         drawCells(g2, model.getTilesOnBoard(), converter, colorTheme);
         //drawCells(g2, model.GetTilesOfValue(), converter, colorTheme)
         

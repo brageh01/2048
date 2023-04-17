@@ -1,6 +1,6 @@
 package no.uib.inf101.sem2;
 
-import no.uib.inf101.sem2.grid.CellPosition;
+import no.uib.inf101.sem2.twentyfourtyeight.controller.GameController;
 import no.uib.inf101.sem2.twentyfourtyeight.model.GameBoard;
 import no.uib.inf101.sem2.twentyfourtyeight.model.GameModel;
 import no.uib.inf101.sem2.twentyfourtyeight.tile.RandomTileFactory;
@@ -21,6 +21,7 @@ public class Main {
     TileFactory factory = new RandomTileFactory();
     GameModel model = new GameModel(board, factory);
     GameView view = new GameView(model);
+    new GameController(model, view);
 
     JFrame frame = new JFrame();
     frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -29,4 +30,5 @@ public class Main {
     frame.pack();
     frame.setVisible(true);
     }
+
 }

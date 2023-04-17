@@ -26,7 +26,7 @@ Iterable<GridCell<Integer>> getTilesOnBoard();
  * Gets every tile on the board with a value
  * @return every tile with another value than zero
  */
-Iterable<GridCell<Character>> getTilesOfValue();
+Iterable<GridCell<Integer>> getTilesOfValue();
 
 
 
