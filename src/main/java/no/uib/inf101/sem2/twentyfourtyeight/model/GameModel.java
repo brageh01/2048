@@ -83,29 +83,35 @@ public class GameModel implements ViewableGameModel, ControllableGameModel {
     
     public boolean moveTiles(int dx, int dy) {
         boolean moved = false;
-        int startRow = (dy == 1) ? this.board.rows() - 1 : 0;
-        int startCol = (dx == 1) ? this.board.cols() - 1 : 0;
-        int endRow = (dy == 1) ? -1 : this.board.rows();
-        int endCol = (dx == 1) ? -1 : this.board.cols();
-        int rowStep = (dy == 0) ? 1 : -dy;
-        int colStep = (dx == 0) ? 1 : -dx;
-    
-        for (int row = startRow; row != endRow; row += rowStep) {
-            for (int col = startCol; col != endCol; col += colStep) {
-                CellPosition currentPosition = new CellPosition(row, col);
-                int currentValue = this.board.get(currentPosition);
-    
-                if (currentValue != 0) {
-                    Tile currentTile = Tile.newTile(currentValue, currentPosition);
-    
-                    if (canMoveTile(currentTile, dx, dy)) {
-                        applyMoveTile(currentTile, dx, dy);
-                        moved = true;
+        boolean keepMoving = true;
+
+        while(keepMoving){
+            keepMoving = false;
+            int startRow = (dy == 1) ? this.board.rows() - 1 : 0;
+            int startCol = (dx == 1) ? this.board.cols() - 1 : 0;
+            int endRow = (dy == 1) ? -1 : this.board.rows();
+            int endCol = (dx == 1) ? -1 : this.board.cols();
+            int rowStep = (dy == 0) ? 1 : -dy;
+            int colStep = (dx == 0) ? 1 : -dx;
+            
+            for (int row = startRow; row != endRow; row += rowStep) {
+                for (int col = startCol; col != endCol; col += colStep) {
+                    CellPosition currentPosition = new CellPosition(row, col);
+                    int currentValue = this.board.get(currentPosition);
+                    
+                    if (currentValue != 0) {
+                        Tile currentTile = Tile.newTile(currentValue, currentPosition);
+                        
+                        if (canMoveTile(currentTile, dx, dy)) {
+                            applyMoveTile(currentTile, dx, dy);
+                            moved = true;
+                            keepMoving = true;
+                        }
                     }
                 }
             }
         }
-    
+            
         if (moved) {
             addRandomTile();
         }

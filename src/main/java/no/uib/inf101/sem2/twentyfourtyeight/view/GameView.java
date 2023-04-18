@@ -30,6 +30,7 @@ public class GameView extends JPanel{
         this.setBackground(backgroundColor);
     }
 
+
     @Override
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
