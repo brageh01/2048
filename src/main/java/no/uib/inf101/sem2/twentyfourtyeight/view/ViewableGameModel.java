@@ -35,4 +35,12 @@ Iterable<GridCell<Integer>> getTilesOfValue();
  * @return the state of the game
  */
 GameState getGameState();
+
+
+/**
+ * Method to return the total score of the current game
+ * @return the score of the game
+ */
+int getScore();
+
 }

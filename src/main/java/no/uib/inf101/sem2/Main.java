@@ -1,5 +1,6 @@
 package no.uib.inf101.sem2;
 
+import no.uib.inf101.sem2.grid.CellPosition;
 import no.uib.inf101.sem2.twentyfourtyeight.controller.GameController;
 import no.uib.inf101.sem2.twentyfourtyeight.model.GameBoard;
 import no.uib.inf101.sem2.twentyfourtyeight.model.GameModel;
@@ -16,7 +17,7 @@ public class Main {
     /* board.set(new CellPosition(0, 0), 2);
     board.set(new CellPosition(0, 3), 4);
     board.set(new CellPosition(3, 0), 8);
-    board.set(new CellPosition(3, 3), 16); */
+    board.set(new CellPosition(3, 3), 1024); */
 
     TileFactory factory = new RandomTileFactory();
     GameModel model = new GameModel(board, factory);

@@ -15,32 +15,34 @@ public class GameModel implements ViewableGameModel, ControllableGameModel {
     TileFactory factory;
     Tile tile;
     GameState gameState;
-    
+    private int score;
 
     public GameModel(GameBoard board, TileFactory factory){
         this.board = board;
         this.factory = factory;
         this.gameState = GameState.ACTIVE_GAME;
-
+        score = 0;
+        
         for (int i = 0; i < 2; i++){
             addRandomTile();
         }
     }
-
+    
     private void addRandomTile(){
         board.addTile(factory.getNext(board.getRandomEmptyPosition()));
     }
+    
     
     @Override
     public GridDimension getDimension() {
         return this.board;
     }
-
+    
     @Override
     public Iterable<GridCell<Integer>> getTilesOnBoard() {
         return this.board;
     }
-
+    
     
     private boolean canMoveTile(Tile tile, int dx, int dy) {
         CellPosition nextPosition = new CellPosition(tile.getPosition().row() + dy, tile.getPosition().col() + dx);
@@ -52,14 +54,14 @@ public class GameModel implements ViewableGameModel, ControllableGameModel {
         
         
         int nextValue = this.board.get(nextPosition);
-    
-
+        
+        
         if (nextValue == 0) {
             return true;
         } else if (nextValue == tile.getValue()) {
             return true;
         }
-    
+        
         return false;
     }
     
@@ -68,7 +70,7 @@ public class GameModel implements ViewableGameModel, ControllableGameModel {
         CellPosition nextPosition = new CellPosition(tile.getPosition().row() + dy, tile.getPosition().col() + dx);
         int currentValue = tile.getValue();
         int nextValue = this.board.get(nextPosition);
-    
+        
         if (nextValue == 0) {
             Tile movedTile = tile.shiftedBy(dy, dx);
             this.board.set(movedTile.getPosition(), movedTile.getValue());
@@ -78,13 +80,15 @@ public class GameModel implements ViewableGameModel, ControllableGameModel {
             mergedTile.setValue(currentValue * 2);
             this.board.set(mergedTile.getPosition(), mergedTile.getValue());
             this.board.set(currentPosition, 0);
+            
+            updateScore(currentValue * 2);
         }
     }
     
     public boolean moveTiles(int dx, int dy) {
         boolean moved = false;
         boolean keepMoving = true;
-
+        
         while(keepMoving){
             keepMoving = false;
             int startRow = (dy == 1) ? this.board.rows() - 1 : 0;
@@ -111,47 +115,56 @@ public class GameModel implements ViewableGameModel, ControllableGameModel {
                 }
             }
         }
-            
+        
         if (moved) {
             addRandomTile();
         }
-    
+        
         return moved;
     }
-
-
+    
+    
     @Override
     public void moveUp() {
         moveTiles(0, -1);
     }
-
+    
     @Override
     public void moveDown() {
         moveTiles(0, 1);
     }
-
+    
     @Override
     public void moveLeft() {
         moveTiles(-1, 0);
     }
-
+    
     @Override
     public void moveRight() {
         moveTiles(1, 0);
     }
-
+    
     @Override
     public GameState getGameState() {
         return gameState;
     }
-
+    
     @Override
     public Iterable<GridCell<Integer>> getTilesOfValue() {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'getTilesOfValue'");
     }
-
-
     
+   
+    private void updateScore(int value){
+        score += value;
     }
+    
+
+    public int getScore(){
+        return score;
+    }
+    
+    
+}
 

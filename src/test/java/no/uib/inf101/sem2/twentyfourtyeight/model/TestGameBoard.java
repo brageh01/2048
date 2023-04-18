@@ -15,11 +15,11 @@ public void testPrettyString() {
   board.set(new CellPosition(0, 0), 2);
   board.set(new CellPosition(0, 3), 4);
   board.set(new CellPosition(2, 0), 8);
-  board.set(new CellPosition(2, 3), 16);
+  board.set(new CellPosition(2, 3), 1024);
   String expected = String.join("\n", new String[] {
       "2004",
       "0000",
-      "80016"
+      "8001024"
   });
   assertEquals(expected, board.prettyString());
 }

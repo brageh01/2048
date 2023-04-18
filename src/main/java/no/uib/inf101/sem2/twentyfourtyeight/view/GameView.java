@@ -1,26 +1,36 @@
 package no.uib.inf101.sem2.twentyfourtyeight.view;
 
+import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import no.uib.inf101.sem2.grid.GridCell;
 import no.uib.inf101.sem2.twentyfourtyeight.model.GameModel;
+
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.Insets;
 import java.awt.Shape;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.geom.Rectangle2D;
 
 
-
-
-public class GameView extends JPanel{
+public class GameView extends JPanel {
     ViewableGameModel model;
     ColorTheme colorTheme;
     double INNER_MARGIN = 20;
     double OUTER_MARGIN = 20;
-    
-    public GameView(GameModel model){
+
+    private JPanel gamePanel;
+
+    public GameView(GameModel model) {
         this.model = model;
         this.setFocusable(true);
         this.setPreferredSize(new Dimension(400, 400));
@@ -28,17 +38,48 @@ public class GameView extends JPanel{
         colorTheme = new DefaultColorTheme();
         Color backgroundColor = colorTheme.getBackgroundColor();
         this.setBackground(backgroundColor);
+
+        setLayout(new BorderLayout());
+
+        gamePanel = new JPanel() {
+            @Override
+            public void paintComponent(Graphics g) {
+                super.paintComponent(g);
+                drawGame(g);
+            }
+        };
+
+        gamePanel.setVisible(false);
+        add(gamePanel, BorderLayout.CENTER);
+
+        JPanel startPanel = new JPanel(new GridBagLayout());
+        startPanel.setBackground(backgroundColor);
+        GridBagConstraints gbc = new GridBagConstraints();
+        gbc.insets = new Insets(0, 0, 20, 0);
+
+        JButton startButton = new JButton("Start");
+        startButton.setFont(new Font("Arial", Font.BOLD, 24));
+        startButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                gamePanel.setVisible(true);
+                startPanel.setVisible(false);
+            }
+        });
+
+        gbc.gridy = 0;
+        startPanel.add(startButton, gbc);
+
+        JLabel instructionLabel = new JLabel("Use arrow-keys to move");
+        instructionLabel.setFont(new Font("Arial", Font.PLAIN, 16));
+        gbc.gridy = 1;
+        startPanel.add(instructionLabel, gbc);
+
+        add(startPanel, BorderLayout.SOUTH);
     }
 
-
-    @Override
-    public void paintComponent(Graphics g) {
-        super.paintComponent(g);
+    private void drawGame(Graphics g){
         Graphics2D g2 = (Graphics2D) g;
-        drawGame(g2);
-    }
-
-    private void drawGame(Graphics2D g2){
 
         double boxDimX = this.getWidth()-2*INNER_MARGIN;
         double boxDimY = this.getHeight()-2*INNER_MARGIN;
@@ -50,6 +91,8 @@ public class GameView extends JPanel{
         g2.setColor(colorTheme.getFrameColor());
         g2.fill(shape);
         g2.draw(shape);
+
+        drawScore(g2);
       
         
         // Create a CellPositionToPixelConverter-object based on the rectangle
@@ -90,5 +133,14 @@ public class GameView extends JPanel{
             }
         }
     }
-}
 
+    private void drawScore(Graphics2D g2) {
+        String scoreText = "Score: " + model.getScore();
+        g2.setColor(colorTheme.getFontColor());
+        g2.setFont(g2.getFont().deriveFont(18f));
+        int stringWidth = g2.getFontMetrics().stringWidth(scoreText);
+        int x = (int) (this.getWidth() - stringWidth - OUTER_MARGIN);
+        int y = (int) (OUTER_MARGIN - 5);
+        g2.drawString(scoreText, x, y);
+    }
+}
