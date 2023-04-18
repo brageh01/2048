@@ -26,7 +26,7 @@ public class Main {
 
     JFrame frame = new JFrame();
     frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-    frame.setTitle("2048");
+    frame.setTitle("INF101");
     frame.setContentPane(view);
     frame.pack();
     frame.setVisible(true);
