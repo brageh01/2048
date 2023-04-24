@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 
 import no.uib.inf101.sem2.grid.CellPosition;
 
-public class TestGameBoard{
+public class TestPrettyString{
 
 
 @Test

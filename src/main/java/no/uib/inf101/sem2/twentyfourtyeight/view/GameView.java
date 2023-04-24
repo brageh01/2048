@@ -29,7 +29,7 @@ public class GameView extends JPanel {
     double OUTER_MARGIN = 20;
 
     private JPanel gamePanel;
-
+    
     public GameView(GameModel model) {
         this.model = model;
         this.setFocusable(true);
@@ -52,10 +52,12 @@ public class GameView extends JPanel {
         gamePanel.setVisible(false);
         add(gamePanel, BorderLayout.CENTER);
 
+        
         JPanel startPanel = new JPanel(new GridBagLayout());
         startPanel.setBackground(backgroundColor);
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.insets = new Insets(0, 0, 20, 0);
+
 
         JButton startButton = new JButton("Start");
         startButton.setFont(new Font("Arial", Font.BOLD, 24));
@@ -66,6 +68,7 @@ public class GameView extends JPanel {
                 startPanel.setVisible(false);
             }
         });
+        
 
         gbc.gridy = 0;
         startPanel.add(startButton, gbc);
@@ -91,7 +94,7 @@ public class GameView extends JPanel {
         g2.setColor(colorTheme.getFrameColor());
         g2.fill(shape);
         g2.draw(shape);
-
+        
         drawScore(g2);
       
         
@@ -136,6 +139,7 @@ public class GameView extends JPanel {
             }
         }
     }
+    
 
     private void drawScore(Graphics2D g2) {
         String scoreText = "Score: " + model.getScore();

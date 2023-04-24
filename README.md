@@ -13,4 +13,4 @@ Hovedmålet er som navnet tilsier, å få flisen med verdi 2048. Dersom spillere
 Poengscoren til spilleren blir avgjort av summen av alle flissammenslåinger gjort under spillet. Desto flere sammenslåinger, desto høyere flisverdi, desto høyere poengsum. Det kan derfor være lurt å ha en strategi for å oppnå høye flisverdier på brettet.
 
 
-Lenke til forklaringsvideo: 
+Lenke til forklaringsvideo: https://www.youtube.com/watch?v=co5uHVPMMfY
