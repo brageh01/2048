@@ -10,7 +10,9 @@ public class RandomTileFactory implements TileFactory {
     public Tile getNext(CellPosition position) {
        Random random = new Random();
        int value = random.nextInt(10) < 9 ? 2 : 4;
-       return Tile.newTile(value, position);
-    }
+       Tile newTile = new Tile(value, position);
+       return newTile;
+
+}
 
 }

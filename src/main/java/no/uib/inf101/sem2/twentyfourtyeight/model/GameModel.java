@@ -104,7 +104,7 @@ public class GameModel implements ViewableGameModel, ControllableGameModel {
                     int currentValue = this.board.get(currentPosition);
                     
                     if (currentValue != 0) {
-                        Tile currentTile = Tile.newTile(currentValue, currentPosition);
+                        Tile currentTile = new Tile(currentValue, currentPosition);
                         
                         if (canMoveTile(currentTile, dx, dy)) {
                             applyMoveTile(currentTile, dx, dy);
