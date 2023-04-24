@@ -9,19 +9,69 @@ import static org.junit.jupiter.api.Assertions.assertEquals;;
 public class TestTileMovement {
     
     @Test
-    public void tileCanMove(){
+    public void tileCanMoveUp(){
         GameBoard board = new GameBoard(4, 4);
-        board.set(new CellPosition(0, 0), 2);
-        board.set(new CellPosition(0, 1), 2);
+        board.set(new CellPosition(1, 1), 2);
+        board.set(new CellPosition(2, 1), 2);
         
-        RandomTileFactory factory = new RandomTileFactory();
+        FixedTileFactory factory = new FixedTileFactory(0);
         GameModel model = new GameModel(board, factory);
         
-        model.moveRight();
-        assertEquals(4, board.get(new CellPosition(0, 3)));
-        assertEquals(0, board.get(new CellPosition(0, 0)));
-        assertEquals(0, board.get(new CellPosition(0, 1)));
+        model.moveUp();
+        assertEquals(4, board.get(new CellPosition(0, 1)));
+        assertEquals(0, board.get(new CellPosition(1, 1)));
+        assertEquals(0, board.get(new CellPosition(2, 1)));
     }
+
+    @Test
+    public void tileCanMoveDown(){
+        GameBoard board = new GameBoard(4, 4);
+        board.set(new CellPosition(1, 1), 2);
+        board.set(new CellPosition(2, 1), 2);
+        
+        FixedTileFactory factory = new FixedTileFactory(0);
+        GameModel model = new GameModel(board, factory);
+    
+        model.moveDown();
+        assertEquals(4, board.get(new CellPosition(3, 1)));
+        assertEquals(0, board.get(new CellPosition(1, 1)));
+        assertEquals(0, board.get(new CellPosition(2, 1)));
+    }
+
+    @Test
+    public void tileCanMoveRight(){
+        GameBoard board = new GameBoard(4, 4);
+        board.set(new CellPosition(1, 1), 2);
+        board.set(new CellPosition(2, 1), 2);
+        
+        FixedTileFactory factory = new FixedTileFactory(0);
+        GameModel model = new GameModel(board, factory);
+    
+        model.moveRight();
+        assertEquals(2, board.get(new CellPosition(1, 3)));
+        assertEquals(2, board.get(new CellPosition(2, 3)));
+        assertEquals(0, board.get(new CellPosition(1, 1)));
+        assertEquals(0, board.get(new CellPosition(2, 1)));
+        }
+    
+    
+    @Test
+    public void tileCanMoveLeft(){
+        GameBoard board = new GameBoard(4, 4);
+        board.set(new CellPosition(1, 1), 2);
+        board.set(new CellPosition(2, 1), 2);
+        
+        FixedTileFactory factory = new FixedTileFactory(0);
+        GameModel model = new GameModel(board, factory);
+    
+        model.moveLeft();
+        assertEquals(2, board.get(new CellPosition(1, 0)));
+        assertEquals(2, board.get(new CellPosition(2, 0)));
+        assertEquals(0, board.get(new CellPosition(1, 1)));
+        assertEquals(0, board.get(new CellPosition(2, 1)));
+    }
+        
+    
 
 
     @Test
