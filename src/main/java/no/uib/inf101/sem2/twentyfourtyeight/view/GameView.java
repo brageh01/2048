@@ -104,6 +104,9 @@ public class GameView extends JPanel {
         drawCells(g2, model.getTilesOnBoard(), converter, colorTheme);
         //drawCells(g2, model.GetTilesOfValue(), converter, colorTheme)
         
+        if (model.getGameState() == GameState.GAME_OVER){
+            drawGameOverMessage(g2);
+        }
         
     }
 
@@ -143,4 +146,16 @@ public class GameView extends JPanel {
         int y = (int) (OUTER_MARGIN - 5);
         g2.drawString(scoreText, x, y);
     }
+
+    private void drawGameOverMessage(Graphics2D g2) {
+        g2.setColor(colorTheme.getGameOverColor());
+        g2.setFont(g2.getFont().deriveFont(50f));
+        String message = "Game Over";
+        int stringWidth = g2.getFontMetrics().stringWidth(message);
+        int stringHeight = g2.getFontMetrics().getAscent();
+        int x = (int) (this.getWidth() / 2 - stringWidth / 2);
+        int y = (int) (this.getHeight() / 2 + stringHeight / 2);
+        g2.drawString(message, x, y);
+    }
+
 }

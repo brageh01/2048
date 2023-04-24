@@ -2,7 +2,7 @@ package no.uib.inf101.sem2.twentyfourtyeight.tile;
 
 import no.uib.inf101.sem2.grid.CellPosition;
 
-public class Tile {
+public class Tile implements ITile {
     // Instance variables
     private int value;
     private CellPosition position;
@@ -42,14 +42,7 @@ public class Tile {
     }
 
     // Checks if two tiles are equal based on their value and position
-    @Override
-    public boolean equals(Object obj) {
-        if (obj == null) return false;
-        if (obj == this) return true;
-        if (!(obj instanceof Tile)) return false;
-        Tile other = ((Tile) obj);
-        return this.value == other.value && this.position.equals(other.position);
-    }
+    
 
     @Override
     public int hashCode() {
@@ -58,13 +51,5 @@ public class Tile {
         result = prime * result + value;
         result = prime * result + position.hashCode();
         return result;
-    }
-
-    @Override
-    public String toString() {
-        return "Tile{" +
-                "value=" + value +
-                ", position=" + position +
-                '}';
     }
 }

@@ -16,7 +16,7 @@ public class Main {
     
     /* board.set(new CellPosition(0, 0), 2);
     board.set(new CellPosition(0, 3), 4);
-    board.set(new CellPosition(3, 0), 8);
+    board.set(new CellPosition(3, 0), 2048);
     board.set(new CellPosition(3, 3), 1024); */
 
     TileFactory factory = new RandomTileFactory();

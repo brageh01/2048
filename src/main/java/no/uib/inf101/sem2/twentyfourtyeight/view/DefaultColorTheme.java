@@ -21,12 +21,8 @@ public class DefaultColorTheme implements ColorTheme {
         case 256 -> new Color(237, 204, 97); //256
         case 512 -> new Color(237, 200, 80); //512
         case 1024 -> new Color(237, 197, 63); //1024
-        //finne en fargekode for case 2048 -> new Color(?)
+        case 2048 -> new Color(244, 192, 86); //2048
         case 0 -> Color.GRAY;
-        case 'r' -> Color.RED;
-        case 'g' -> Color.GREEN;
-        case 'y' -> Color.YELLOW;
-        case 'p' -> Color.PINK;
         default -> throw new IllegalArgumentException(
             "No available color for '" + number + "'");
         };
@@ -49,8 +45,7 @@ public class DefaultColorTheme implements ColorTheme {
 
     @Override
     public Color getGameOverColor() {
-        
-        return new Color(0, 0, 0, 128);
+        return Color.RED;
     }
 
 

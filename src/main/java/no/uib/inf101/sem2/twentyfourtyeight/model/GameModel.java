@@ -118,12 +118,42 @@ public class GameModel implements ViewableGameModel, ControllableGameModel {
         
         if (moved) {
             addRandomTile();
+            if (isGameOver()){
+                gameState = GameState.GAME_OVER;
+            }
         }
         
         return moved;
     }
     
     
+    public boolean isGameOver() {
+        for (int row = 0; row < board.rows(); row++) {
+            for (int col = 0; col < board.cols(); col++) {
+                CellPosition currentPosition = new CellPosition(row, col);
+                int currentValue = this.board.get(currentPosition);
+                if (currentValue == 0) {
+                    return false; // There is an empty space, so the game is not over
+                }
+                for (int dx = -1; dx <= 1; dx++) {
+                    for (int dy = -1; dy <= 1; dy++) {
+                        if ((dx == 0) != (dy == 0)) { // Check only up, down, left, or right
+                            int newRow = row + dy;
+                            int newCol = col + dx;
+                            if (board.positionIsOnGrid(new CellPosition(newRow, newCol))) {
+                                if (currentValue == this.board.get(new CellPosition(newRow, newCol))) {
+                                    return false; // There is a neighboring tile with the same value, so the game is not over
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        return true;
+    }
+    
+
     @Override
     public void moveUp() {
         moveTiles(0, -1);
@@ -148,13 +178,7 @@ public class GameModel implements ViewableGameModel, ControllableGameModel {
     public GameState getGameState() {
         return gameState;
     }
-    
-    @Override
-    public Iterable<GridCell<Integer>> getTilesOfValue() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getTilesOfValue'");
-    }
-    
+        
    
     private void updateScore(int value){
         score += value;
