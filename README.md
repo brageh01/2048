@@ -11,6 +11,3 @@ Etter hvert trekk er blitt gjort vil en ny flis med verdi 2 eller 4 dukke opp p�
 Spillet fortsetter helt frem til hele rutenettet er fullt, og ingen fliser har tilstøtende nummer. Dette vil si helt frem til ingen fliser har mulighet til å forskyve seg i noen av de fire retningene.
 Hovedmålet er som navnet tilsier, å få flisen med verdi 2048. Dersom spilleren får flisen 2048, har h*n fremdeles mulighet til å fortsette spillet frem til ingen lovlige trekk lenger er tilgjengelige.
 Poengscoren til spilleren blir avgjort av summen av alle flissammenslåinger gjort under spillet. Desto flere sammenslåinger, desto høyere flisverdi, desto høyere poengsum. Det kan derfor være lurt å ha en strategi for å oppnå høye flisverdier på brettet.
-
-
-Lenke til forklaringsvideo: https://www.youtube.com/watch?v=co5uHVPMMfY
